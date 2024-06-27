@@ -1,0 +1,32 @@
+pre-commit:
+  parallel: true
+  commands:
+    ts_scripts:
+      glob: '*.{js,ts,jsx,tsx,mjs}'
+      run: yarn format {staged_files} && yarn lint && git add {staged_files}
+    ts_assets:
+      glob: '*.{json,scss,css}'
+      run: yarn format {staged_files} && git add {staged_files}
+    # resume_manager:
+    #   glob: 'resume_manager/**/*.{kt,kts}'
+    #   run: ktlint --format {staged_files} && ktlint {staged_files} && git add {staged_files}
+
+format:
+  parallel: true
+  commands:
+    ts:
+      glob: '*.{js,ts,jsx,tsx,json,scss,css,mjs}'
+      run: yarn format {all_files}
+    # resume_manager:
+    #   glob: 'resume_manager/**/*.{kt,kts}'
+    #   run: ktlint --format {all_files}
+
+lint:
+  parallel: true
+  commands:
+    ts:
+      glob: '*.{js,ts,jsx,tsx,mjs}'
+      run: yarn lint
+    # resume_manager:
+    #   glob: 'resume_manager/**/*.{kt,kts}'
+    #   run: ktlint {all_files}

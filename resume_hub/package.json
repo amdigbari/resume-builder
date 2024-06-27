@@ -1,0 +1,54 @@
+{
+  "name": "resume_hub",
+  "version": "0.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amdigbari/resume-builder",
+    "directory": "resume_hub"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate-openapi-ts": "openapi-typescript"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@tanstack/react-query": "^5.48.0",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "clsx": "^2.1.1",
+    "http-status-codes": "^2.3.0",
+    "js-cookie": "^3.0.5",
+    "modern-normalize": "^2.0.0",
+    "next": "14.2.4",
+    "next-intl": "^3.15.3",
+    "openapi-fetch": "^0.10.2",
+    "ramda": "^0.30.1",
+    "react": "^18",
+    "react-bootstrap": "^2.10.3",
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.0",
+    "react-use": "^17.5.0"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^14.2.4",
+    "@tanstack/react-query-devtools": "^5.48.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^20",
+    "@types/ramda": "^0.30.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "cypress": "^13.12.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.4",
+    "openapi-typescript": "^7.0.0",
+    "openapi-typescript-helpers": "^0.0.9",
+    "postcss": "^8.4.38",
+    "postcss-rtlcss": "^5.3.0",
+    "sass": "^1.77.6",
+    "typescript": "^5"
+  }
+}
