@@ -16,7 +16,6 @@ Including another URLconf
 """
 
 from django.conf import settings
-from django.conf.urls.i18n import i18n_patterns
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
@@ -26,7 +25,7 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
 )
 
-non_locale_urlpatterns = [
+urlpatterns = [
     path("admin/", admin.site.urls),
     # OPENAPI Documentation
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
@@ -46,11 +45,5 @@ non_locale_urlpatterns = [
 
 
 if settings.DEBUG:
-    non_locale_urlpatterns += static(
-        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
-    )
-    non_locale_urlpatterns += static(
-        settings.STATIC_URL, document_root=settings.STATIC_ROOT
-    )
-
-urlpatterns = i18n_patterns(*non_locale_urlpatterns)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
