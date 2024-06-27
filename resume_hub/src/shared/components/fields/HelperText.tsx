@@ -7,7 +7,7 @@ interface Props {
   text: string;
   status?: FieldState;
 }
-export function FormText({ text, status = 'none' }: Props) {
+export function HelperText({ text, status = 'none' }: Props) {
   return (
     <p className="ms-2">
       <i

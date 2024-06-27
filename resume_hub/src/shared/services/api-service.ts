@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+import { redirect } from 'next/navigation';
 import createClient, {
   type ClientMethod,
   type FetchOptions,
@@ -7,18 +8,14 @@ import createClient, {
 } from 'openapi-fetch';
 import type { FilterKeys, HttpMethod, MediaType, PathsWithMethod as PathsWith } from 'openapi-typescript-helpers';
 
-import { redirect } from 'src/navigation';
-import { isServer } from 'src/shared/configs';
+import { RESUME_MANAGER_BASE_API_URL, isServer } from 'src/configs';
+import { LocaleService, TokenStorage } from 'src/shared/utils';
 
-import { TokenStorage } from '../utils';
 import type { paths as ResumeManager } from './.generated/types/resume-manager';
 import { type APIServicesCombinedErrors, HttpError } from './api-service-errors';
 
-// NOTE: This approach assumes that every backed services will be served via a API Gateway
-// and there will be only one base_url for every service API paths
-const API_BASE_URL = process.env.NEXT_APP_API_BASE_URL || 'http://localhost:3000/api/';
-
-type PathGen<BasePath extends string, Paths> = {
+type ApiServices = 'resume-manager';
+type PathGen<BasePath extends `${ApiServices}:`, Paths> = {
   [k in keyof Paths & string as `${BasePath}${k}`]: Paths[k];
 };
 type Paths = PathGen<'resume-manager:', ResumeManager>;
@@ -33,6 +30,10 @@ export type HttpResponseData<M extends HttpMethod, P extends HttpPaths<M>, Media
   OpenapiResponse<M, P, Media>['data']
 >;
 
+const apiMappings: Record<ApiServices, string> = {
+  'resume-manager': RESUME_MANAGER_BASE_API_URL,
+};
+
 /**
  *
  * @param path The path of the request that is exists in the Paths.
@@ -41,13 +42,11 @@ export type HttpResponseData<M extends HttpMethod, P extends HttpPaths<M>, Media
  * @example getRequestPath('sample:/pets'): 'sample/pets'
  */
 function getRequestPath(path: keyof Paths) {
-  // This is due to openapi-fetch behavior that removes the trailing slash of the base url
-  return `/${path.replace(':', '/')}`.replace(/\/{2,}/g, '/');
+  const [service, ...pathname] = path.split(':');
+  return `${apiMappings[service as ApiServices]}${pathname.join(':')}`;
 }
 
-const client = createClient<Paths>({
-  baseUrl: API_BASE_URL,
-});
+const client = createClient<Paths>();
 
 export type ClientFetchParams<M extends HttpMethod, P extends HttpPaths<M>> =
   HttpRequestData<M, P> extends { params: any } | { body: any }
@@ -61,15 +60,17 @@ export async function clientFetch<
   ...[method, url, options = {} as HttpRequestData<M, P>]: ClientFetchParams<M, P>
 ): Promise<HttpResponseData<M, P, Media>> {
   try {
-    // // Inject Headers
-    // options.headers = injectFieldsToRequestHeaders(options.headers, {
-    //   key: 'Accept-Language',
-    //   value: LocaleService.get(),
-    // });
+    // Inject Accept Language Header only if it's not provided and we are not in the server.
+    // To use it in the server, one must provide it in the options.
 
-    // const accessToken = TokenStorage.get('access-token');
-    // accessToken &&
-    //   injectFieldsToRequestHeaders(options.headers, { key: 'Authorization', value: `Bearer ${accessToken}` });
+    options.headers = injectFieldsToRequestHeaders(options.headers, {
+      key: 'Accept-Language',
+      value: LocaleService.getLocale(),
+    });
+
+    const accessToken = TokenStorage.get('access-token');
+    accessToken &&
+      injectFieldsToRequestHeaders(options.headers, { key: 'Authorization', value: `Bearer ${accessToken}` });
 
     const { data, error, response } = (await (
       client[method.toUpperCase() as Uppercase<M>] as ClientMethod<any, HttpMethod, MediaType>
@@ -80,46 +81,47 @@ export async function clientFetch<
         throw new HttpError({ status: false, message: error, status_code: response.status });
       }
 
-      // // Refresh The token and Retry
-      // if (response.status === StatusCodes.UNAUTHORIZED) {
-      //   const refreshToken = TokenStorage.get('refresh-token');
-      //   if (refreshToken) {
-      //     const refreshTokenResponse = await client.POST('media-manager:/api/v1/auth/refresh-token', {
-      //       body: { token: refreshToken },
-      //     });
-      //     if (refreshTokenResponse.data) {
-      //       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = refreshTokenResponse.data.data;
+      // Refresh The token and Retry
+      if (response.status === StatusCodes.UNAUTHORIZED) {
+        const refreshToken = TokenStorage.get('refresh-token');
+        if (refreshToken) {
+          const refreshTokenResponse = await client.POST('resume-manager:/v1/users/token/refresh', {
+            body: { refresh: refreshToken },
+          });
+          if (refreshTokenResponse.data) {
+            const { access: newAccessToken } = refreshTokenResponse.data;
 
-      //       options.headers = injectFieldsToRequestHeaders(options.headers, {
-      //         key: 'Authorization',
-      //         value: `Bearer ${newAccessToken}`,
-      //       });
-      //       const retryResponse = (await (
-      //         client[method.toUpperCase() as Uppercase<M>] as ClientMethod<any, HttpMethod, Media>
-      //       )(getRequestPath(url), options)) as OpenapiResponse<M, P, Media>;
+            options.headers = injectFieldsToRequestHeaders(options.headers, {
+              key: 'Authorization',
+              value: `Bearer ${newAccessToken}`,
+            });
+            const retryResponse = (await (
+              client[method.toUpperCase() as Uppercase<M>] as ClientMethod<any, HttpMethod, Media>
+            )(getRequestPath(url), options)) as OpenapiResponse<M, P, Media>;
 
-      //       if (retryResponse.data) {
-      //         TokenStorage.set('access-token', newAccessToken);
-      //         TokenStorage.set('refresh-token', newRefreshToken);
+            if (retryResponse.data) {
+              TokenStorage.set('access-token', newAccessToken);
+              TokenStorage.set('refresh-token', refreshToken);
 
-      //         return retryResponse as HttpResponseData<M, P, Media>;
-      //       }
-      //     }
-      //   }
+              return retryResponse as HttpResponseData<M, P, Media>;
+            }
+          }
+        }
 
-      //   TokenStorage.empty();
-      //   if (isServer) {
-      //     redirect('/auth/login');
-      //   } else {
-      //     window.location.pathname = '/auth/login';
-      //   }
-      // }
+        TokenStorage.empty();
+        if (isServer) {
+          redirect('/auth/login');
+        } else {
+          window.location.pathname = '/auth/login';
+        }
+      }
 
       throw new HttpError({ ...error, status_code: response.status } as unknown as APIServicesCombinedErrors);
     }
 
     return data as HttpResponseData<M, P, Media>;
   } catch (error) {
+    console.log(error);
     if (error instanceof HttpError) {
       throw error;
     }

@@ -1,0 +1,7 @@
+{
+  "locales": ["fa-IR", "en-US"],
+  "defaultLocale": "fa-IR",
+  "pages": {
+    "*": ["common"]
+  }
+}

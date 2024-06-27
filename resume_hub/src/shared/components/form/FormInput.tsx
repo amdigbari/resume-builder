@@ -1,10 +1,12 @@
+'use client';
+
 import { type ForwardedRef, forwardRef, useMemo } from 'react';
 import { FormControl, type FormControlProps, FormGroup, FormLabel } from 'react-bootstrap';
 import { type FieldPath, type FieldValues, useController, useFormContext } from 'react-hook-form';
 
 import type { FieldState, FormFieldCommonProps } from 'src/shared/types';
 
-import { FormText } from './FormText';
+import { HelperText } from '../fields/HelperText';
 
 interface Props<
   TFieldValues extends FieldValues = Record<string, string>,
@@ -81,7 +83,7 @@ export const FormInput = forwardRef(function ForwardedRefFormInput<
 
       {/* Show error only in case hideError is false */}
       {!!((!hideError && fieldError) || helperText) && (
-        <FormText text={(!hideError && fieldError) || helperText || ''} status={fieldState} />
+        <HelperText text={(!hideError && fieldError) || helperText || ''} status={fieldState} />
       )}
     </FormGroup>
   );

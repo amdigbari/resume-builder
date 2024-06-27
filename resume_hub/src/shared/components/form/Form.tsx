@@ -1,3 +1,5 @@
+'use client';
+
 import { Form as BootstrapForm, type FormProps as BootstrapFormProps } from 'react-bootstrap';
 import { type FieldValues, FormProvider, type FormProviderProps, type UseFormHandleSubmit } from 'react-hook-form';
 

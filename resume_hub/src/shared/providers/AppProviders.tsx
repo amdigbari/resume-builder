@@ -6,22 +6,21 @@ import { ThemeProvider as BootstrapThemeProvider } from 'react-bootstrap';
 
 import { ToastProvider } from 'src/shared/components';
 import { queryClient } from 'src/shared/services';
-
-// import { useLocaleState } from '../utils';
+import { LocaleService, useLocaleState } from 'src/shared/utils';
 
 interface Props {
   children: ReactNode;
 }
 export function AppProviders({ children }: Props): ReactNode {
   // Sets the locale to the Cookies at start
-  // useLocaleState();
+  useLocaleState();
 
   // Providing all messages to the client
   // side is the easiest way to get started
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BootstrapThemeProvider dir="rtl">
+      <BootstrapThemeProvider dir={LocaleService.getLocaleDir()}>
         <ToastProvider>{children}</ToastProvider>
       </BootstrapThemeProvider>
     </QueryClientProvider>

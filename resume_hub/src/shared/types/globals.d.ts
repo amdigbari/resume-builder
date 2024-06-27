@@ -6,11 +6,11 @@ type SearchParams<T extends string> = {
       : string;
 };
 
-type Locales = 'fa-IR' | 'en-US';
+type Locale = 'fa-IR' | 'en-US';
 
 interface PageProps<T extends string = never, U extends string = never> {
-  params: { locale: Locales } & { [k in T]: string };
-  searchParams: SearchParams<U>;
+  params: { [k in T]: string };
+  searchParams: SearchParams<'lang' | U>;
 }
 
 interface LayoutProps<T extends string = never, U extends string = never> extends PageProps<T, U> {
@@ -19,3 +19,5 @@ interface LayoutProps<T extends string = never, U extends string = never> extend
 
 // Extracted from Bootstrap color variants
 type ColorVariant = 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | 'light';
+
+type Dir = 'ltr' | 'rtl';

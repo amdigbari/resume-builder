@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import { useContext, useEffect } from 'react';
 import { Toast as BootstrapToast, ToastBody, ToastHeader } from 'react-bootstrap';

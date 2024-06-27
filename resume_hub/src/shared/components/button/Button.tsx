@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import useTranslation from 'next-translate/useTranslation';
 import { type ForwardedRef, forwardRef, useMemo } from 'react';
 import { Button as BootstrapButton, type ButtonProps as BootstrapButtonProps, Spinner } from 'react-bootstrap';
 
@@ -22,7 +22,7 @@ export const Button = forwardRef(function ForwardedRefButton(
   { children, variant: buttonVariant, spinnerVariant, loading = false, ...restProps }: ButtonProps,
   ref: ForwardedRef<HTMLButtonElement>,
 ) {
-  const t = useTranslations('common');
+  const { t } = useTranslation('common');
 
   const spinnerFinalVariant = useMemo<ColorVariant>(() => {
     if (spinnerVariant) {
