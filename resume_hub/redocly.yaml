@@ -1,5 +1,5 @@
 apis:
   resume_manager@v1:
-    root: ../resume_manager/api_spec/docs.yaml
+    root: ../resume_manager/api_spec/schema.yaml
     x-openapi-ts:
-      output: ./src/shared/services/.generated/resume-manager.d.ts
+      output: ./src/shared/services/.generated/types/resume-manager.d.ts

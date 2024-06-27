@@ -22,8 +22,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/media-manager/:path*',
-        destination: 'http://localhost:8080/:path*',
+        source: '/api/resume-manager/:path*',
+        destination: 'http://localhost:8000/:path*',
       },
     ];
   },

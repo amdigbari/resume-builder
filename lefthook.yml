@@ -7,9 +7,11 @@ pre-commit:
     ts_assets:
       glob: '*.{json,scss,css}'
       run: yarn format {staged_files} && git add {staged_files}
-    # resume_manager:
-    #   glob: 'resume_manager/**/*.{kt,kts}'
-    #   run: ktlint --format {staged_files} && ktlint {staged_files} && git add {staged_files}
+
+    lead_manager:
+      glob: '**/*.py'
+      exclude: '.*\/migrations\/.*\.py$'
+      run: isort {staged_files} && black {staged_files} && pylint {staged_files} && git add {staged_files}
 
 format:
   parallel: true
@@ -17,9 +19,10 @@ format:
     ts:
       glob: '*.{js,ts,jsx,tsx,json,scss,css,mjs}'
       run: yarn format {all_files}
-    # resume_manager:
-    #   glob: 'resume_manager/**/*.{kt,kts}'
-    #   run: ktlint --format {all_files}
+
+    lead_manager:
+      glob: '**/*.py'
+      run: isort {all_files} && black {all_files}
 
 lint:
   parallel: true
@@ -27,6 +30,8 @@ lint:
     ts:
       glob: '*.{js,ts,jsx,tsx,mjs}'
       run: yarn lint
-    # resume_manager:
-    #   glob: 'resume_manager/**/*.{kt,kts}'
-    #   run: ktlint {all_files}
+
+    lead_manager:
+      glob: '**/*.py'
+      exclude: '.*\/migrations\/.*\.py$'
+      run: pylint {all_files}

@@ -756,3 +756,4 @@ yalc.lock
 
 # Generated Files
 .generated
+staticfiles
