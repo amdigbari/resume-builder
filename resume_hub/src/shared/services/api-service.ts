@@ -1,5 +1,4 @@
 import { StatusCodes } from 'http-status-codes';
-import { redirect } from 'next/navigation';
 import createClient, {
   type ClientMethod,
   type FetchOptions,
@@ -9,7 +8,8 @@ import createClient, {
 import type { FilterKeys, HttpMethod, MediaType, PathsWithMethod as PathsWith } from 'openapi-typescript-helpers';
 
 import { RESUME_MANAGER_BASE_API_URL, isServer } from 'src/configs';
-import { LocaleService, TokenStorage } from 'src/shared/utils';
+import { redirect } from 'src/shared/utils';
+import { TokenStorage, getCurrentLocale } from 'src/shared/utils';
 
 import type { paths as ResumeManager } from './.generated/types/resume-manager';
 import { type APIServicesCombinedErrors, HttpError } from './api-service-errors';
@@ -65,7 +65,7 @@ export async function clientFetch<
 
     options.headers = injectFieldsToRequestHeaders(options.headers, {
       key: 'Accept-Language',
-      value: LocaleService.getLocale(),
+      value: await getCurrentLocale(),
     });
 
     const accessToken = TokenStorage.get('access-token');

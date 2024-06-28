@@ -9,11 +9,12 @@ type SearchParams<T extends string> = {
 type Locale = 'fa-IR' | 'en-US';
 
 interface PageProps<T extends string = never, U extends string = never> {
-  params: { [k in T]: string };
+  params: { locale: Locale } & { [k in T]: string };
   searchParams: SearchParams<'lang' | U>;
 }
 
-interface LayoutProps<T extends string = never, U extends string = never> extends PageProps<T, U> {
+interface LayoutProps<T extends string = never, U extends string = never>
+  extends Omit<PageProps<T, U>, 'searchParams'> {
   children: ReactNode;
 }
 

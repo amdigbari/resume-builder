@@ -1,13 +1,14 @@
 import NextBundleAnalyzer from '@next/bundle-analyzer';
-import nextTranslate from 'next-translate-plugin';
+import createNextIntlPlugin from 'next-intl/plugin';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.BUNDLE_ANALYZE === 'true',
 });
+
+const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -18,4 +19,4 @@ const nextConfig = {
   reactStrictMode: true,
 };
 
-export default withBundleAnalyzer(nextTranslate(nextConfig));
+export default withBundleAnalyzer(withNextIntl(nextConfig));
