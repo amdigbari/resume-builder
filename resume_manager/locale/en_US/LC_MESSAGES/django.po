@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-27 11:47+0000\n"
+"POT-Creation-Date: 2024-07-05 09:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,5 +23,157 @@ msgstr "English"
 msgid "Farsi"
 msgstr "Farsi"
 
+msgid "created at"
+msgstr "created at"
+
+msgid "instance created at"
+msgstr "instance is created at"
+
+msgid "updated at"
+msgstr "updated at"
+
+msgid "latest update at"
+msgstr "instance latest update is at"
+
+msgid "resume"
+msgstr "resume"
+
+msgid "is template"
+msgstr "is template?"
+
+msgid "is resume a template"
+msgstr ""
+"is it a template? Template is not a resume itself but a base that includes "
+"the ui of it."
+
+msgid "forked from"
+msgstr "forked from"
+
+msgid "resume forked from"
+msgstr "resume is forked from which template/resume?"
+
+msgid "template"
+msgstr "template"
+
+msgid "resume's template"
+msgstr "the template instance of the resume."
+
+msgid "title"
+msgstr "title"
+
+msgid "resume's title"
+msgstr "the title of the resume"
+
 msgid "user"
 msgstr "User"
+
+msgid "resume's user"
+msgstr "the owner of the resume"
+
+msgid "is public"
+msgstr "is public"
+
+msgid "is resume public"
+msgstr "is it a public resume? Public resumes will be visible to anyone"
+
+msgid "section's resume"
+msgstr "the section related resume template"
+
+msgid "section"
+msgstr "section"
+
+msgid "resume section's section"
+msgstr "the section related to the resume section."
+
+msgid "content"
+msgstr "content"
+
+msgid "resume section's content"
+msgstr "The content that will be shown inside the resume section"
+
+msgid "section's template"
+msgstr "the template related of the section"
+
+msgid "start column"
+msgstr "start column"
+
+msgid "section start column"
+msgstr "the start column of the section in the template"
+
+msgid "start row"
+msgstr "start row"
+
+msgid "section start row"
+msgstr "th start row of the section in the template"
+
+msgid "column count"
+msgstr "column count"
+
+msgid "section column count"
+msgstr "the number columns the section will cover in the template"
+
+msgid "row count"
+msgstr "row count"
+
+msgid "section row count"
+msgstr "the number rows the section will cover in the template"
+
+msgid "min columns"
+msgstr "min columns"
+
+msgid "section min columns"
+msgstr "the minimum columns the section will cover in the template"
+
+msgid "max columns"
+msgstr "max columns"
+
+msgid "section max columns"
+msgstr "the maximum columns the section will cover in the template"
+
+msgid "min rows"
+msgstr "min rows"
+
+msgid "section min rows"
+msgstr "the minimum rows the section will cover in the template"
+
+msgid "max rows"
+msgstr "max rows"
+
+msgid "section max rows"
+msgstr "the maximum rows the section will cover in the template"
+
+msgid "is locked"
+msgstr "is locked"
+
+msgid "is section locked"
+msgstr "is section locked? Locked sections will not change position or size."
+
+msgid "columns count"
+msgstr "columns count"
+
+msgid "template columns count"
+msgstr "the count columns in the template"
+
+msgid "sections horizontal gap"
+msgstr "sections horizontal gap"
+
+msgid "template sections horizontal gap"
+msgstr "the gap between sections in horizontal view"
+
+msgid "sections vertical gap"
+msgstr "sections vertical gap"
+
+msgid "template sections vertical gap"
+msgstr "the gap between sections in vertical view"
+
+msgid "edges horizontal gap"
+msgstr "edges horizontal gap"
+
+msgid "template edges horizontal gap"
+msgstr "the gap between edge and first section in horizontal view"
+
+msgid "edges vertical gap"
+msgstr "edges vertical gap"
+
+msgid "template edges vertical gap"
+msgstr "the gap between edge and first section in vertical view"

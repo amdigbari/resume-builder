@@ -77,7 +77,11 @@ DJANGO_REST_RELATED_APPS = [
 DJANGO_DB_RELATED_APPS = [
     "safedelete",
 ]
-INTERNAL_APPS = []
+INTERNAL_APPS = [
+    "resume",
+    "template",
+    "user",
+]
 INSTALLED_APPS = [
     "daphne",  # Used this to run like aa an ASGI server
     *DJANGO_DEFAULT_APPS,

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-27 11:47+0000\n"
+"POT-Creation-Date: 2024-07-05 09:35+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,5 +23,159 @@ msgstr "انگلیسی"
 msgid "Farsi"
 msgstr "فارسی"
 
+msgid "created at"
+msgstr "زمان ساخت"
+
+msgid "instance created at"
+msgstr "زمان ساخت این نمونه"
+
+msgid "updated at"
+msgstr "زمان تغییر"
+
+msgid "latest update at"
+msgstr "آخرین زمان تغییر این نمونه"
+
+msgid "resume"
+msgstr "رزومه"
+
+msgid "is template"
+msgstr "آیا قالب است؟"
+
+msgid "is resume a template"
+msgstr ""
+"آیا قالب است؟ قالب‌ها به تنهایی رزومه نیستند، بلکه می‌توان رزومه‌ها را از روی "
+"آن‌ها ساخت."
+
+msgid "forked from"
+msgstr "ساخته‌شده از"
+
+msgid "resume forked from"
+msgstr "قالبی یا رزومه‌ای که رزومه از روی آن ساخته‌شده است."
+
+msgid "template"
+msgstr "قالب"
+
+msgid "resume's template"
+msgstr "قالب رزومه"
+
+msgid "title"
+msgstr "عنوان"
+
+msgid "resume's title"
+msgstr "عنوان رزومه"
+
 msgid "user"
 msgstr "کاربر"
+
+msgid "resume's user"
+msgstr "طراح رزومه"
+
+msgid "is public"
+msgstr "آیا عمومی است؟"
+
+msgid "is resume public"
+msgstr ""
+"آیا رزومه عمومی است؟ رزومه عمومی رزومه‌ای است که تمامی کاربران توان مشاهده آن "
+"را خواهند داشت."
+
+msgid "section's resume"
+msgstr "قالب رزومه مرتبط به این بخش"
+
+msgid "section"
+msgstr "بخش"
+
+msgid "resume section's section"
+msgstr "سکشن مرتبط به این بخش رزومه"
+
+msgid "content"
+msgstr "محتوا"
+
+msgid "resume section's content"
+msgstr "محتوای این بخش رزومه"
+
+msgid "section's template"
+msgstr "قالب مرتبط به این بخش"
+
+msgid "start column"
+msgstr "ستون آغازین"
+
+msgid "section start column"
+msgstr "ستون آغازین بخش"
+
+msgid "start row"
+msgstr "ردیف آغازین"
+
+msgid "section start row"
+msgstr "ردیف آغازین بخش"
+
+msgid "column count"
+msgstr "تعداد ستون"
+
+msgid "section column count"
+msgstr "تعداد ستونی که بخش پر می‌کند"
+
+msgid "row count"
+msgstr "تعداد ردیف"
+
+msgid "section row count"
+msgstr "تعداد ردیفی که بخش پر می‌کند"
+
+msgid "min columns"
+msgstr "حداقل تعداد ستون"
+
+msgid "section min columns"
+msgstr "حداقل تعداد ستونی که بخش پر می‌کند"
+
+msgid "max columns"
+msgstr "حداکثر تعداد ستون"
+
+msgid "section max columns"
+msgstr "حداکثر تعداد ستونی که بخش پر می‌کند"
+
+msgid "min rows"
+msgstr "حداقل تعداد ردیف"
+
+msgid "section min rows"
+msgstr "حداقل تعداد ردیفی که بخش پر می‌کند"
+
+msgid "max rows"
+msgstr "حداکثر تعداد ردیف"
+
+msgid "section max rows"
+msgstr "حداکثر تعداد ردیفی که بخش پر می‌کند"
+
+msgid "is locked"
+msgstr "آیا قفل‌ شده است؟"
+
+msgid "is section locked"
+msgstr "آیا بخش قفل شده است؟ بخش‌های قفل‌شده تغییر سایز نمی‌دهند و جابجا نمی‌شوند."
+
+msgid "columns count"
+msgstr "تعداد ستون"
+
+msgid "template columns count"
+msgstr "تعداد ستون‌های موجود در قالب"
+
+msgid "sections horizontal gap"
+msgstr "فاصله بین بخش‌های افقی"
+
+msgid "template sections horizontal gap"
+msgstr "فاصله بین بخش‌های افقی در قالب"
+
+msgid "sections vertical gap"
+msgstr "فاصله بین بخش‌های عمودی"
+
+msgid "template sections vertical gap"
+msgstr "فاصله بین بخش‌های عمودی در قالب"
+
+msgid "edges horizontal gap"
+msgstr "فاصله لبه‌های افقی"
+
+msgid "template edges horizontal gap"
+msgstr "فاصله بین لبه‌های افقی و اولین بخش در قالب"
+
+msgid "edges vertical gap"
+msgstr "فاصله لبه‌های عمودی"
+
+msgid "template edges vertical gap"
+msgstr "فاصله بین لبه‌های عمودی و اولین بخش در قالب"
