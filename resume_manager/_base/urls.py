@@ -39,6 +39,13 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    # Resumes
+    path("api/v1/resumes/", include("resume.resume_urls"), name="resumes"),
+    path(
+        "api/v1/resume-templates/",
+        include("resume.resume_template_urls"),
+        name="resume_templates",
+    ),
     # Users
     path("api/v1/users/", include("user.urls"), name="users"),
 ]

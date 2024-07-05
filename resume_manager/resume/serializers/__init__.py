@@ -1,0 +1,1 @@
+from .resume_serializer import ResumeSerializer

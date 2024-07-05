@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import os
 import sys
+from datetime import timedelta
 from pathlib import Path
 
 import sentry_sdk
@@ -79,7 +80,6 @@ DJANGO_DB_RELATED_APPS = [
 ]
 INTERNAL_APPS = [
     "resume",
-    "template",
     "user",
 ]
 INSTALLED_APPS = [
@@ -272,3 +272,6 @@ SPECTACULAR_SETTINGS = {
     "ENUM_ADD_EXPLICIT_BLANK_NULL_CHOICE": False,
     "COMPONENT_SPLIT_REQUEST": True,
 }
+
+if DEBUG:
+    SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(days=365)}

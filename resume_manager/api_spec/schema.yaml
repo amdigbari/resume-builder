@@ -3,6 +3,302 @@ info:
   title: ''
   version: 0.0.0
 paths:
+  /v1/resume-templates/:
+    get:
+      operationId: v1_resume_templates_list
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResumeList'
+          description: ''
+    post:
+      operationId: v1_resume_templates_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+  /v1/resume-templates/{id}/:
+    get:
+      operationId: v1_resume_templates_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+    put:
+      operationId: v1_resume_templates_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+    patch:
+      operationId: v1_resume_templates_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedResumeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedResumeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedResumeRequest'
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+    delete:
+      operationId: v1_resume_templates_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /v1/resumes/:
+    get:
+      operationId: v1_resumes_list
+      parameters:
+        - name: limit
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
+        - name: offset
+          required: false
+          in: query
+          description: The initial index from which to return the results.
+          schema:
+            type: integer
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedResumeList'
+          description: ''
+    post:
+      operationId: v1_resumes_create
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+  /v1/resumes/{id}/:
+    get:
+      operationId: v1_resumes_retrieve
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+    put:
+      operationId: v1_resumes_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResumeRequest'
+        required: true
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+    patch:
+      operationId: v1_resumes_partial_update
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedResumeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedResumeRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedResumeRequest'
+      security:
+        - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Resume'
+          description: ''
+    delete:
+      operationId: v1_resumes_destroy
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      tags:
+        - v1
+      security:
+        - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
   /v1/users/token:
     post:
       operationId: v1_users_token_create
@@ -59,6 +355,325 @@ paths:
           description: ''
 components:
   schemas:
+    PaginatedResumeList:
+      type: object
+      required:
+        - count
+        - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=400&limit=100
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?offset=200&limit=100
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Resume'
+    PatchedResumeRequest:
+      type: object
+      description: Adds nested create feature
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResumeSectionRequest'
+        columns_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template columns count
+        sections_horizontal_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template sections horizontal gap
+        sections_vertical_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template sections vertical gap
+        edges_horizontal_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template edges horizontal gap
+        edges_vertical_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template edges vertical gap
+        title:
+          type: string
+          nullable: true
+          description: resume's title
+          maxLength: 100
+        is_public:
+          type: boolean
+          description: is resume public
+        forked_from:
+          type: integer
+          nullable: true
+          description: resume forked from
+    Resume:
+      type: object
+      description: Adds nested create feature
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResumeSection'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        columns_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template columns count
+        sections_horizontal_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template sections horizontal gap
+        sections_vertical_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template sections vertical gap
+        edges_horizontal_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template edges horizontal gap
+        edges_vertical_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template edges vertical gap
+        title:
+          type: string
+          nullable: true
+          description: resume's title
+          maxLength: 100
+        is_public:
+          type: boolean
+          description: is resume public
+        forked_from:
+          type: integer
+          nullable: true
+          description: resume forked from
+      required:
+        - created_at
+        - id
+        - sections
+        - updated_at
+    ResumeRequest:
+      type: object
+      description: Adds nested create feature
+      properties:
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResumeSectionRequest'
+        columns_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template columns count
+        sections_horizontal_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template sections horizontal gap
+        sections_vertical_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template sections vertical gap
+        edges_horizontal_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template edges horizontal gap
+        edges_vertical_gap:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: template edges vertical gap
+        title:
+          type: string
+          nullable: true
+          description: resume's title
+          maxLength: 100
+        is_public:
+          type: boolean
+          description: is resume public
+        forked_from:
+          type: integer
+          nullable: true
+          description: resume forked from
+      required:
+        - sections
+    ResumeSection:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: instance created at
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+          description: latest update at
+        start_column:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section start column
+        start_row:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section start row
+        column_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section column count
+        row_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section row count
+        min_columns:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section min columns
+        max_columns:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section max columns
+        min_rows:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section min rows
+        max_rows:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section max rows
+        is_locked:
+          type: boolean
+          description: is section locked
+        content:
+          type: string
+          description: resume section's content
+        resume:
+          type: integer
+          nullable: true
+          description: section's resume
+      required:
+        - column_count
+        - content
+        - created_at
+        - id
+        - row_count
+        - start_column
+        - start_row
+        - updated_at
+    ResumeSectionRequest:
+      type: object
+      properties:
+        start_column:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section start column
+        start_row:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section start row
+        column_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section column count
+        row_count:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          description: section row count
+        min_columns:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section min columns
+        max_columns:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section max columns
+        min_rows:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section min rows
+        max_rows:
+          type: integer
+          maximum: 32767
+          minimum: -32768
+          nullable: true
+          description: section max rows
+        is_locked:
+          type: boolean
+          description: is section locked
+        content:
+          type: string
+          minLength: 1
+          description: resume section's content
+        resume:
+          type: integer
+          nullable: true
+          description: section's resume
+      required:
+        - column_count
+        - content
+        - row_count
+        - start_column
+        - start_row
     TokenObtainPair:
       type: object
       properties:
@@ -102,5 +717,10 @@ components:
           minLength: 1
       required:
         - refresh
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
 servers:
   - url: /api

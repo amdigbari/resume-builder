@@ -1,2 +1,2 @@
-from .time import TimeModel
-from .time_safedelete import TimeSafeDeleteModel
+from .template import Template, TemplateSection
+from .time import TimeModel, TimeSafeDeleteModel
