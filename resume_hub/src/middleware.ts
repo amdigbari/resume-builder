@@ -1,14 +1,20 @@
 import createMiddleware from 'next-intl/middleware';
+import type { NextRequest } from 'next/server';
 
 import { ALL_LOCALES, DEFAULT_LOCALE } from 'src/shared/utils';
 
-export default createMiddleware({
+const intlMiddleware = createMiddleware({
   locales: ALL_LOCALES,
   defaultLocale: DEFAULT_LOCALE,
   localeDetection: true,
 });
 
-export const config = {
-  // Match only internationalized pathnames
-  matcher: ['/', `/(${ALL_LOCALES.join('|')})/:path*`],
-};
+export default function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  const shouldHandle =
+    pathname === '/' || new RegExp(`^/(${ALL_LOCALES.join('|')})(/.*)?$`).test(request.nextUrl.pathname);
+  if (!shouldHandle) return;
+
+  return intlMiddleware(request);
+}
